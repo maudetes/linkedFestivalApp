@@ -1,0 +1,7 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX mo: <http://www.daml.org/2001/01/gedcom/gedcom#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT * WHERE {
+?s rdf:type ?t .
+?t rdfs:subClassOf mo:Individual
+}

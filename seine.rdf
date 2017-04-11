@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE rdf:RDF [
+   <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+   <!ENTITY own 'http://www.own.org#'>
+]>
+<rdf:RDF xmlns:own="&own;"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xml:base="http://www.own.org"
+>
+
+<!-- <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xml:base="http://www.daml.org/2001/01/gedcom/gedcom"> -->
+
+  <own:Stage rdf:about="#Grande"
+    own:name="Grande"/>
+  <own:Stage rdf:about="#Cascade"
+    own:name="La Cascade"/>
+  <own:Stage rdf:about="#Industrie"
+    own:name="de l'industrie"/>
+  <own:Stage rdf:about="#Pression"
+    own:name="Pression Live"/>
+  <own:Stage rdf:about="#IdF"
+    own:name="Île de France"/>
+
+  <own:MusicGroup rdf:about="#MusicGroup1"
+    own:name="Jack Garratt">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Jack_Garratt"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup2"
+    own:name="Tim Dup">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Tim_Dup"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup3"
+    own:name="Two Door Cinema Club">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Two_Door_Cinema_Club"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup4"
+    own:name="Kaviar Special">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Kaviar_Special"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup5"
+    own:name="Gregory Porter">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Gregory_Porter"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup6"
+    own:name="Soulwax">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Soulwax"/>
+  </own:MusicGroup>
+
+
+  <own:MusicEvent rdf:about="#MusicEvent1"
+    own:startDate ="2016-08-26T19:45:00Z"
+    own:endDate = "2016-08-26T20:35:00Z">
+    <own:onStage rdf:resource="#Pression"/>
+    <own:performer rdf:resource="#MusicGroup1"/>
+  </own:MusicEvent>
+
+  <own:MusicEvent rdf:about="#MusicEvent2">
+    <own:performer rdf:resource="#MusicGroup2"/>
+    <own:startDate>2016-08-27T18:00:00Z</own:startDate>
+    <own:endDate>2016-08-27T18:30:00Z</own:endDate>
+    <own:onStage rdf:resource="#IdF"/>
+  </own:MusicEvent>
+
+  <own:MusicEvent rdf:about="#MusicEvent3">
+    <own:performer rdf:resource="#MusicGroup3"/>
+    <own:startDate>2016-08-26T20:45:00Z</own:startDate>
+    <own:endDate>2016-08-26T21:45:00Z</own:endDate>
+    <own:onStage rdf:resource="#Grande"/>
+  </own:MusicEvent>
+    
+    <own:MusicEvent rdf:about="#MusicEvent4">
+      <own:performer rdf:resource="#MusicGroup4"/>
+      <own:startDate>2016-08-27T15:30:00Z</own:startDate>
+      <own:endDate>2016-08-27T16:10:00Z</own:endDate>
+      <own:onStage rdf:resource="#Industrie"/>
+    </own:MusicEvent>
+
+    <own:MusicEvent rdf:about="#MusicEvent5">
+      <own:performer rdf:resource="#MusicGroup5"/>
+      <own:startDate>2016-08-28T16:55:00Z</own:startDate>
+      <own:endDate>2016-08-28T17:45:00Z</own:endDate>
+      <own:onStage rdf:resource="#Cascade"/>
+    </own:MusicEvent>
+
+    <own:MusicEvent rdf:about="#MusicEvent6">
+      <own:performer rdf:resource="#MusicGroup6"/>
+      <own:startDate>2016-08-28T22:05:00Z</own:startDate>
+      <own:endDate>2016-08-28T23:05:00Z</own:endDate>
+      <own:onStage rdf:resource="#Industrie"/>
+    </own:MusicEvent>
+
+  <own:Festival rdf:about="#Festival1"
+    own:startDate="2016-08-26"
+    own:endDate="2016-08-28"
+    own:name="Rock en Seine 2016"
+  >
+    <own:hasStage rdf:resource="#Grande"/>
+    <own:hasStage rdf:resource="#Cascade"/>
+    <own:hasStage rdf:resource="#Industrie"/>
+    <own:hasStage rdf:resource="#Pression"/>
+    <own:hasStage rdf:resource="#IdF"/>
+
+    <own:hasMusicEvent rdf:resource="#1"/>
+    <own:hasMusicEvent rdf:resource="#2"/>
+    <own:hasMusicEvent rdf:resource="#3"/>
+    <own:hasMusicEvent rdf:resource="#4"/>
+    <own:hasMusicEvent rdf:resource="#5"/>
+    <own:hasMusicEvent rdf:resource="#6"/>
+  </own:Festival>
+</rdf:RDF>
+

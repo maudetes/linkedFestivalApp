@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/resources/pure/pure.css">
+    <script src="/resources/vue.js"></script>
+    <script src="/resources/lodash.js"></script>
+    <!--<script src="/resources/zepto.js"></script>-->
+    <script src="/resources/alchemy/scripts/vendor.js"></script>
+    <script src="/resources/alchemy/alchemy.js"></script>
+    
+    <link rel="stylesheet" href="/resources/alchemy/alchemy-white.css"/>
+    <link rel="stylesheet" href="/css/page.css">
+    <script src="/app.js"></script>
+  </head>
+  <body>
+
+
+ <form class="pure-form">
+    <fieldset>
+        <legend>Find all inferences for an RDF type</legend>
+
+        <select id="artist" type="text" placeholder="artist" onchange="preparedSparql(document.getElementById('artist').value, document.getElementById('type').value)">
+            <option value="Jack Garratt">Jack Garratt</option>
+            <option value="Tim Dup">Tim Dup</option>
+            <option value="Two Door Cinema Club">Two Door Cinema Club</option>
+            <option value="Kaviar Special">Kaviar Special</option>
+            <option value="Gregory Porter">Gregory Porter</option>
+            <option value="Soulwax">Soulwax</option>
+        </select>
+        <select id="type" type="text" placeholder="rdf:type" onchange="preparedSparql(document.getElementById('artist').value, document.getElementById('type').value)">
+            <option value="genre">Genre</option>
+            <option value="label">label</option>
+            <option value="activeYearsStartYear">Start Year</option>
+            <option value="birthDate">Birth Date</option>
+            <option value="birthPlace">Birth Place</option>
+        </select>
+
+        <!-- <button type="submit" class="pure-button pure-button-primary">Find</button> -->
+    </fieldset>
+</form>
+
+<!-- <button class="pure-button pure-button-primary" onclick="preparedSparql(document.getElementById('artist').value, document.getElementById('type').value)">Results</button> -->
+<p id="res"></p>
+
+<p id="similarArtist"></p>
+
+ <div class="alchemy" id="alchemy">
+
+ </div>
+
+
+    <link href="//fonts.googleapis.com/css?family=Dosis:500&amp;text=Vue.js" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono" rel="stylesheet" type="text/css">
+  </body>
+</html>
