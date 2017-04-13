@@ -13,27 +13,19 @@
     <link rel="stylesheet" href="/css/page.css">
     <script src="/app.js"></script>
   </head>
-  <body>
-
+  <body onload="preparedSparql(document.getElementById('artist').value);">
 
  <form class="pure-form">
     <fieldset>
         <legend>Find all inferences for an RDF type</legend>
 
-        <select id="artist" type="text" placeholder="artist" onchange="preparedSparql(document.getElementById('artist').value, document.getElementById('type').value)">
+        <select id="artist" onchange="preparedSparql(document.getElementById('artist').value)">
             <option value="Jack Garratt">Jack Garratt</option>
             <option value="Tim Dup">Tim Dup</option>
             <option value="Two Door Cinema Club">Two Door Cinema Club</option>
             <option value="Kaviar Special">Kaviar Special</option>
             <option value="Gregory Porter">Gregory Porter</option>
             <option value="Soulwax">Soulwax</option>
-        </select>
-        <select id="type" type="text" placeholder="rdf:type" onchange="preparedSparql(document.getElementById('artist').value, document.getElementById('type').value)">
-            <option value="genre">Genre</option>
-            <option value="label">label</option>
-            <option value="activeYearsStartYear">Start Year</option>
-            <option value="birthDate">Birth Date</option>
-            <option value="birthPlace">Birth Place</option>
         </select>
 
         <!-- <button type="submit" class="pure-button pure-button-primary">Find</button> -->

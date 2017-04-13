@@ -1,2 +1,50 @@
-*{
+.artist text {
+    display: block;
+    font-size: 15px;
+    fill: #14F787;
+}
+
+.genre circle {
+    fill: #6C7EBD !important;
+    stroke: #6C7EBD !important
+}
+.genre text {
+    display: block;
+    font-size: 10px;
+}
+
+.label circle {
+    fill: #FFFD85 !important;
+    stroke: #FFFD85 !important
+}
+.label text {
+    display: block;
+    font-size: 10px;
+}
+
+.activeYearsStartYear circle {
+    fill: #FFAC70 !important;
+    stroke: #FFAC70 !important
+}
+.activeYearsStartYear text {
+    display: block;
+    font-size: 10px;
+}
+
+.birthDate circle {
+    fill: #E35252 !important;
+    stroke: #E35252 !important
+}
+.birthDate text {
+    display: block;
+    font-size: 10px;
+}
+
+.birthPlace circle {
+    fill: #c112bf !important;
+    stroke: #c112bf !important
+}
+.birthPlace text {
+    display: block;
+    font-size: 10px;
 }

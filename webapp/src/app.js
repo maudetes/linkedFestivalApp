@@ -24,11 +24,11 @@ var treatmentRes = function(jsonRes) {
   console.log(typeof jsonRes);
 
   jsonRes.results.bindings.forEach(function(elem){
-    var array = elem.remote_value.value.split("/"); 
+    var array = elem.remote_value.value.split("/");
     results[array[array.length-1]] = [];
   });
 };
-  
+
 var treatmentSimilar = function(jsonRes) {
   jsonRes = JSON.parse(jsonRes);
   console.log(typeof jsonRes);
@@ -37,7 +37,7 @@ var treatmentSimilar = function(jsonRes) {
     console.log(elem);
     var name = elem.similar_name.value.split("/");
     name = name[name.length-1];
-    var music = elem.remote_value.value.split("/"); 
+    var music = elem.remote_value.value.split("/");
     music = music[music.length-1];
     if(results[music] == null){
       results[music] = [name];
@@ -51,95 +51,74 @@ var treatmentSimilar = function(jsonRes) {
 
 };
 
-var printing = function(){
-  var print = "";
-  for (var music in results){
-    print += "<b>" + music + "</b>" ;
-    results[music].forEach(function(name){
-      print += " " + name;
-    });
-    print += "<br>"
-  }
-  document.getElementById("res").innerHTML = print;
-  console.log(print);
-};
-
-var preparedSparql = function(id, type) { 
+var preparedSparql = function(id) {
 
   results = {};
 
-  console.log(id + " " + type);
-
-  var typeOnt = ["genre", "activeYearsStartYear", "birthDate", "birthPlace" ];
-  var typePro = ["label"];
-
-
-  if(typeOnt.indexOf(type) != -1)
-      add = "http://dbpedia.org/ontology/";
-  if(typePro.indexOf(type) != -1)
-      add = "http://dbpedia.org/property/";
-
-  add += type;
-
-  var sp = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-            "PREFIX own: <http://www.own.org#> " +
-            "PREFIX owl: <http://www.w3.org/2002/07/owl#> " +
-            "SELECT ?local ?remote ?remote_value  " +
-            "WHERE " +
-            "{ " +
-            "  ?local own:name '" + id + "' .  " +
-            "  ?local owl:sameAs ?remote .  " +
-            "  SERVICE <http://live.dbpedia.org/sparql> " +
-            "  { " +
-            "    ?remote <"+ add + "> ?remote_value " +
-            "  } " +
-            "}";
-
-  var sp2 = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-            "PREFIX own: <http://www.own.org#> " +
-            "PREFIX owl: <http://www.w3.org/2002/07/owl#> " +
-            "SELECT ?local ?remote ?remote_value ?similar_name " +
-            "WHERE " +
-            "{ " +
-            "  ?local own:name '" + id + "' .  " +
-            "  ?local owl:sameAs ?remote .  " +
-            "  ?similar_local own:name ?similar_name .  " +
-            "  ?similar_local owl:sameAs ?similar_remote .  " +
-            "  FILTER ('" + id + "' != ?similar_name) . " +
-            "  SERVICE <http://live.dbpedia.org/sparql> " +
-            "  { " +
-            "    ?remote <"+ add + "> ?remote_value ." +
-            "    ?similar_remote <"+ add + "> ?remote_value  " +
-            "  } " +
-            "}";
+  console.log(id);
 
   var sp3 = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
             "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                             "PREFIX ns: <http://www.own.org#>\n" +
                             "SELECT ?p ?o { ns:Pression ?p ?o }";
-  console.log(sp);
-  sparql(sp3, function(res) {
-   // var res = JSON.parse(json);
-    var graph = res.results.bindings.reduce(function(acc, cur) {
-        var node = {
-          caption: cur.p.value,
-          id: acc.nodes.length
-        }
-        edge = {
-          source: 0,
-          target: acc.nodes.length
-        }
-        acc.nodes.push(node);
-        acc.edges.push(edge);
 
-        return acc;
-    }, {nodes:[], edges:[]});
 
-    alchemy.begin({dataSource: graph});
+  var typeOnt = ["genre", "activeYearsStartYear", "birthDate", "birthPlace" ];
+  var typePro = ["label"];
+
+  var allAdd = "(";
+
+  typeOnt.forEach(function(elem){
+    allAdd += "http:\/\/dbpedia\.org\/ontology\/" + elem + "|";
   });
-  //sparql(sp2, treatmentSimilar);
 
-  printing();
+  typePro.forEach(function(elem){
+    allAdd += "http:\/\/dbpedia\.org\/property\/" + elem + "|";
+  });
+
+  allAdd = allAdd.substring(0,allAdd.length-1);
+  allAdd += ")";
+
+  var sp = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+            "PREFIX own: <http://www.own.org#> " +
+            "PREFIX owl: <http://www.w3.org/2002/07/owl#> " +
+            "SELECT ?remote ?relation ?remote_value  " +
+            "WHERE " +
+            "{ " +
+            "  ?remote own:name '" + id + "' .  " +
+            "  SERVICE <http://live.dbpedia.org/sparql> " +
+            "  { " +
+            "    ?remote ?relation ?remote_value " +
+            "  } " +
+            "  FILTER regex(str(?relation), '"+ allAdd +"')" +
+            "}";
+
+  sparql(sp, function(res) {
+     // var res = JSON.parse(json);
+      var graph = res.results.bindings.reduce(function(acc, cur) {
+          var pos = acc.nodes.length + 1;
+          var value = cur.remote_value.value.split("/")[cur.remote_value.value.split("/").length -1];
+          var role = cur.relation.value.split("/")[cur.relation.value.split("/").length -1];
+
+          var node = {
+            caption: value,
+            id: pos,
+            role: role
+          }
+          edge = {
+            source: 0,
+            target: pos
+          }
+          acc.nodes.push(node);
+          acc.edges.push(edge);
+
+          return acc;
+      }, {nodes:[{caption: id, id:0, role:"artist"}], edges:[]});
+
+      console.log(graph);
+
+      alchemy.begin({dataSource: graph, nodeTypes:{role: ["artist", "genre"]}, nodeStyle:{artist:{color: "#14F787", borderColor: "#14F787"}}});
+  });
 
 };
 
