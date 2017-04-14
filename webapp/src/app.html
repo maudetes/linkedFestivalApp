@@ -13,36 +13,39 @@
     <link rel="stylesheet" href="/css/page.css">
     <script src="/app.js"></script>
   </head>
-  <body onload="preparedSparql(document.getElementById('artist').value);">
+  <body style="position:relative; width:100%">
 
+  <div id="Selector" class="sidebar">
  <form class="pure-form">
     <fieldset>
-        <legend>Find all inferences for an RDF type</legend>
+        <legend>What you're selecting</legend>
+        <ul class="">
+            <li>from <select><option>types</option></select></li>
+            <li>show <select><option>i</option></select></li>
+            <li>filter <select><option>types</option></select></li>
+            <li>group <select><option>types</option></select></li>
+        </ul>
+    </fieldset>
+     <fieldset>
+        <legend>Your selection</legend>
+        <ul class="selector"><label v-for="item in items">
+            <li v-bind:class="{'selector-item': true, 'active': checked.includes(item.value)}" @click="preparedSparql(item.label)"><input type="checkbox" v-bind:value="item.value" v-model="checked" />{{item.label}}</li></label>
+        </ul>
+        <span>{{checked}}</span>
 
-        <select id="artist" onchange="preparedSparql(document.getElementById('artist').value)">
-            <option value="Jack Garratt">Jack Garratt</option>
-            <option value="Tim Dup">Tim Dup</option>
-            <option value="Two Door Cinema Club">Two Door Cinema Club</option>
-            <option value="Kaviar Special">Kaviar Special</option>
-            <option value="Gregory Porter">Gregory Porter</option>
-            <option value="Soulwax">Soulwax</option>
-        </select>
 
         <!-- <button type="submit" class="pure-button pure-button-primary">Find</button> -->
     </fieldset>
 </form>
+  </div>
 
 <!-- <button class="pure-button pure-button-primary" onclick="preparedSparql(document.getElementById('artist').value, document.getElementById('type').value)">Results</button> -->
-<p id="res"></p>
 
-<p id="similarArtist"></p>
-
- <div class="alchemy" id="alchemy">
-
- </div>
+  <div class="alchemy" id="alchemy"></div>
 
 
-    <link href="//fonts.googleapis.com/css?family=Dosis:500&amp;text=Vue.js" rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=Dosis:500" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono" rel="stylesheet" type="text/css">
   </body>
 </html>

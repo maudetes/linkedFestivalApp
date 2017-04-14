@@ -37,7 +37,6 @@ public class Server {
 
     public Server() {
 
-
         Model schema = FileManager.get().loadModel("file:onto.ttl");
         Model data = FileManager.get().loadModel( "file:seine.rdf");
         //Model schema = FileManager.get().loadModel("file:owlDemoSchema.xml");

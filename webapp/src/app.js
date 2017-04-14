@@ -1,21 +1,49 @@
 var add;
 var results = {};
 
-var sparql = function(sparql, func) {
-//var sparqlEndpoint = 'http://localhost:8889/sparql/dataset';
+window.onload = function () {
+var sparqlArtists = function() {
+  var q = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                                      "PREFIX ns: <http://www.own.org#>\n" +
+                                      "SELECT ?object ?property { ?object rdf:type ns:MusicGroup. ?object ns:name ?property }";
+  sparql(q).then(function(data){
+    as.items =data.results.bindings.map(function(r) {
+        return {
+            label: r.property.value,
+            value: r.object.value
+        };
+        }
+    );
+  });
+}
+
+var as = new Vue({
+  el: '#Selector',
+  data: {
+    items: [
+        /*{label: 'Franz Ferdinand', value:'http://www.own.org#FranzFerdinand'}*/
+    ],
+    checked: [],
+    preparedSparql: preparedSparql
+  },
+  beforeCreate: sparqlArtists
+});
+
+};
+
+
+var sparql = function(sparql) {
   var sparqlEndpoint = 'http://localhost:3330/dataset';
-  $.ajax({
-    type: 'GET',
-    url: sparqlEndpoint,
-    data: {query: sparql},
-    async: false,
-    success: function(data){
-      console.log(data);
-      func(data);
-    },
-    error: function(xhr, type){
-      alert('error ajax ' + sparql);
-    }
+  return new Promise(function(resolve, reject){
+      $.ajax({
+        type: 'GET',
+        url: sparqlEndpoint,
+        data: {query: sparql},
+        async: false,
+        success: resolve,
+        error: reject
+      });
   });
 };
 
@@ -93,7 +121,7 @@ var preparedSparql = function(id) {
             "  FILTER regex(str(?relation), '"+ allAdd +"')" +
             "}";
 
-  sparql(sp, function(res) {
+  sparql(sp).then(function(res) {
      // var res = JSON.parse(json);
       var graph = res.results.bindings.reduce(function(acc, cur) {
           var pos = acc.nodes.length + 1;

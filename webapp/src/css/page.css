@@ -1,3 +1,32 @@
+.sidebar {
+    background: #f2f2f0;
+    width:300px;
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    overflow: scroll;
+}
+ul.selector {
+    font-family: "Source Sans Pro"
+    font-size: 1.2em;
+    list-style: none;
+    padding:0;
+}
+li.selector-item {
+    padding: 0.8em;
+    background: #f2f2f0;
+}
+li.selector-item input {
+    margin-right: 0.4em;
+}
+li.selector-item.active {
+    background: #fd9;
+}
+.alchemy {
+  position:relative;
+  margin-left:300px;
+}
 .artist text {
     display: block;
     font-size: 15px;
