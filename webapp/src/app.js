@@ -30,6 +30,22 @@ var as = new Vue({
   beforeCreate: sparqlArtists
 });
 
+      var conf = {
+        dataSource: {nodes:[], edges:[]},
+//        forceLocked: false,
+        graphHeight: function(){ return 800; },
+        graphWidth: function(){ return 1000; },
+//        linkDistance: function(){ return 60; },
+        nodeTypes:{
+            role: ["artist", "genre"]
+            },
+        nodeStyle:{
+        artist:{color: "#14F787", borderColor: "#14F787"}
+        }
+      };
+
+      alchemy = new Alchemy(conf);
+
 };
 
 
@@ -123,10 +139,14 @@ var preparedSparql = function(id) {
 
   sparql(sp).then(function(res) {
      // var res = JSON.parse(json);
+
+      var artistNodeId = newNodeId(id);
+
       var graph = res.results.bindings.reduce(function(acc, cur) {
-          var pos = acc.nodes.length;
           var value = cur.remote_value.value.split("/")[cur.remote_value.value.split("/").length -1];
           var role = cur.relation.value.split("/")[cur.relation.value.split("/").length -1];
+          var pos = newNodeId(value, acc.nodes.length);
+
 
           var node = {
             caption: value,
@@ -134,11 +154,12 @@ var preparedSparql = function(id) {
             role: role
           }
           edge = {
-            source: 0,
+            source: artistNodeId,
             target: pos
           }
           acc.nodes.push(node);
           acc.edges.push(edge);
+
 
           var similar_sp = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
                     "PREFIX own: <http://www.own.org#> " +
@@ -146,6 +167,7 @@ var preparedSparql = function(id) {
                     "SELECT ?similar_name  " +
                     "WHERE " +
                     "{ " +
+                    "  ?remote rdf:type <http://www.own.org#MusicGroup> .  " +
                     "  ?remote own:name ?similar_name .  " +
                     "  SERVICE <http://dbpedia.org/sparql> " +
                     "  { " +
@@ -158,26 +180,16 @@ var preparedSparql = function(id) {
             fetchSimilar(pos, similar_sp, 0);
 
           return acc;
-      }, {nodes:[{caption: id, id:0, role:"artist"}], edges:[]});
+      }, {nodes:[{caption: id, id:artistNodeId, role:"artist"}], edges:[]});
+
+
+      alchemy.create.nodes(graph.nodes)
+      alchemy.create.edges(graph.edges);
+
+      alchemy.startGraph();
 
       console.log(graph);
 
-      var conf = {
-        dataSource: graph,
-        forceLocked: false,
-        graphHeight: function(){ return 1000; },
-        graphWidth: function(){ return 1000; },
-        linkDistance: function(){ return 60; },
-        nodeTypes:{
-            role: ["artist", "genre"]
-            },
-        nodeStyle:{
-        artist:{color: "#14F787", borderColor: "#14F787"}
-        }
-      };
-
-      alchemy = new Alchemy(conf);
-//      alchemy.begin(conf);
   });
 
 };
@@ -197,7 +209,7 @@ function fetchSimilar(pos, sp, attempts){
         console.log(similar);
         if (similar.results.bindings.length>0){
             similar.results.bindings.forEach(function(elem){
-                var id = alchemy.get.nodes().all()._el.length + similar.results.bindings.indexOf(elem);
+                var id = newNodeId(elem.similar_name.value, similar.results.bindings.indexOf(elem));
                 var node = {
                   "caption": elem.similar_name.value,
                   "id": id,
@@ -223,3 +235,13 @@ function fetchSimilar(pos, sp, attempts){
 
 }
 
+var newNodeId = function(nodeName, offset=0){
+    var id = -1;
+    alchemy.get.nodes().all()._el.forEach(function(elem){
+       if (elem.getProperties().caption === nodeName)
+           id = elem.id;
+    })
+    if(id == -1)
+        id = alchemy.get.nodes().all()._el.length + offset;
+    return id;
+}
