@@ -73,28 +73,6 @@ var treatmentRes = function(jsonRes) {
   });
 };
 
-var treatmentSimilar = function(jsonRes) {
-  jsonRes = JSON.parse(jsonRes);
-  console.log(typeof jsonRes);
-
-  jsonRes.results.bindings.forEach(function(elem){
-    console.log(elem);
-    var name = elem.similar_name.value.split("/");
-    name = name[name.length-1];
-    var music = elem.remote_value.value.split("/");
-    music = music[music.length-1];
-    if(results[music] == null){
-      results[music] = [name];
-    }
-    else {
-      results[music].push(name)
-    }
-  });
-
-  console.log(results);
-
-};
-
 var preparedSparql = function(id) {
 
   results = {};
@@ -140,24 +118,32 @@ var preparedSparql = function(id) {
   sparql(sp).then(function(res) {
      // var res = JSON.parse(json);
 
-      var artistNodeId = newNodeId(id);
+      var artistNodeId = existingNode(id);
+      if (artistNodeId == -1){
+        artistNodeId = alchemy.get.nodes().all()._el.length;
+        alchemy.create.nodes([{caption:id, id:artistNodeId, role:'artist'}])
+      }
+
+      alchemy.startGraph();
 
       var graph = res.results.bindings.reduce(function(acc, cur) {
           var value = cur.remote_value.value.split("/")[cur.remote_value.value.split("/").length -1];
           var role = cur.relation.value.split("/")[cur.relation.value.split("/").length -1];
-          var pos = newNodeId(value, acc.nodes.length);
-
-
-          var node = {
-            caption: value,
-            id: pos,
-            role: role
+          var pos = existingNode(value);
+          if (pos == -1){
+            pos = alchemy.get.nodes().all()._el.length + acc.nodes.length;
+            var node = {
+              caption: value,
+              id: pos,
+              role: role
+            }
+            acc.nodes.push(node);
           }
+
           edge = {
             source: artistNodeId,
             target: pos
           }
-          acc.nodes.push(node);
           acc.edges.push(edge);
 
 
@@ -180,7 +166,7 @@ var preparedSparql = function(id) {
             fetchSimilar(pos, similar_sp, 0);
 
           return acc;
-      }, {nodes:[{caption: id, id:artistNodeId, role:"artist"}], edges:[]});
+      }, {nodes:[], edges:[]});
 
 
       alchemy.create.nodes(graph.nodes)
@@ -205,24 +191,23 @@ function fetchSimilar(pos, sp, attempts){
     var timeout = Math.floor(Math.random() * 10000);
 
     setTimeout(function(){sparql(sp).then(function(similar){
-        console.log("Attempts: " + attempts);
-        console.log(similar);
         if (similar.results.bindings.length>0){
             similar.results.bindings.forEach(function(elem){
-                var id = newNodeId(elem.similar_name.value, similar.results.bindings.indexOf(elem));
-                var node = {
-                  "caption": elem.similar_name.value,
-                  "id": id,
-                  "role": "artist"
+                var id = existingNode(elem.similar_name.value);
+                if (id == - 1){
+                    id = alchemy.get.nodes().all()._el.length + similar.results.bindings.indexOf(elem);
+                    var node = {
+                      "caption": elem.similar_name.value,
+                      "id": id,
+                      "role": "artist"
+                    }
+                    alchemy.create.nodes([node])
                 }
                 var edge = {
                   "source": pos,
                   "target": id
                 }
 
-                console.log(node);
-                console.log(edge);
-                alchemy.create.nodes([node])
                 alchemy.create.edges([edge]);
 
                 alchemy.startGraph();
@@ -235,13 +220,11 @@ function fetchSimilar(pos, sp, attempts){
 
 }
 
-var newNodeId = function(nodeName, offset=0){
+var existingNode = function(nodeName){
     var id = -1;
     alchemy.get.nodes().all()._el.forEach(function(elem){
-       if (elem.getProperties().caption === nodeName)
-           id = elem.id;
+        if (elem.getProperties().caption == nodeName)
+            id = elem.id;
     })
-    if(id == -1)
-        id = alchemy.get.nodes().all()._el.length + offset;
     return id;
 }
