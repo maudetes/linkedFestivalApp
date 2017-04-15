@@ -147,14 +147,14 @@ var preparedSparql = function(id) {
                     "WHERE " +
                     "{ " +
                     "  ?remote own:name ?similar_name .  " +
-                    "  SERVICE <http://live.dbpedia.org/sparql> " +
+                    "  SERVICE <http://dbpedia.org/sparql> " +
                     "  { " +
                     "    ?remote <" + cur.relation.value + "> <" + cur.remote_value.value + "> . " +
                     "  } " +
                     "  FILTER (?similar_name != '" + id + "') " +
                     "}";
 
-          if (cur.remote_value.value == "http://dbpedia.org/resource/Indie_pop")
+//          if (cur.remote_value.value == "http://dbpedia.org/resource/Indie_pop")
             fetchSimilar(pos, similar_sp, 0);
 
           return acc;
