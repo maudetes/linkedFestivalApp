@@ -31,7 +31,6 @@
 
   <own:MusicGroup rdf:about="#MusicGroup2"
     own:name="Tim Dup">
-    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Tim_Dup"/>
   </own:MusicGroup>
 
   <own:MusicGroup rdf:about="#MusicGroup3"
@@ -41,7 +40,6 @@
 
   <own:MusicGroup rdf:about="#MusicGroup4"
     own:name="Kaviar Special">
-    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Kaviar_Special"/>
   </own:MusicGroup>
 
   <own:MusicGroup rdf:about="#MusicGroup5"
@@ -53,6 +51,215 @@
     own:name="Soulwax">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Soulwax"/>
   </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup7"
+    own:name="The Shins">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Shins"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup8"
+    own:name="Pogo Car Crash Control">
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup9"
+    own:name="Adrien Soleiman">
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup10"
+    own:name="Sum 41">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Sum_41"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup11"
+    own:name="Iggy Pop">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Iggy_Pop"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup12"
+    own:name="Bibi Bourelly">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Bibi_Bourelly"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup13"
+    own:name="Caravan Palace">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Caravan_Palace"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup14"
+    own:name="Miike Snow">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Miike_Snow"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup15"
+    own:name="Killason">
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup16"
+    own:name="Einleit">
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup17"
+    own:name="Papooz">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Papooz"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup18"
+    own:name="Anderson Paak">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Anderson_Paak"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup19"
+    own:name="Editors">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Editors_(band)"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup20"
+    own:name="Ghinzu">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Ghinzu"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup21"
+    own:name="Theo Lawrence and the Hearts">
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup22"
+    own:name="Imarhan">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Imarhan"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup23"
+    own:name="Birdy Nam Nam">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Birdy_Nam_Nam"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup24"
+    own:name="The Strumbellas">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Strumbellas"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup25"
+    own:name="Bastille">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Bastille_(band)"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup26"
+    own:name="Nusky and Vaati">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Nusky_and_Vaati"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup27"
+    own:name="Clutch">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Clutch_(band)"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup28"
+    own:name="Logic">
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup29"
+    own:name="Joycut">
+  </own:MusicGroup>
+  
+  <own:MusicGroup rdf:about="#MusicGroup30"
+    own:name="Sigur Rós">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Sigur_Rós"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup31"
+    own:name="La Femme">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/La_Femme_(band)"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup32"
+    own:name="Little Simz">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Little_Simz"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup33"
+    own:name="Royal Republic">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Royal_Republic"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup34"
+    own:name="The Psychotic Monks">
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup35"
+    own:name="Chvrches">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Chvrches"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup36"
+    own:name="Bombino">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Bombino_(musician)"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup37"
+    own:name="The Temper Trap">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Temper_Trap"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup38"
+    own:name="The Underachievers">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Underachievers"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup39"
+    own:name="Breakbot">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Breakbot"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup40"
+    own:name="Grand Blanc">
+  </own:MusicGroup>
+
+  <!-- <own:MusicGroup rdf:about="#MusicGroup41"
+    own:name="Damian Jr. Gong Marley">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Damian_Marley"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup42"
+    own:name="Flavien Berger">
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup43"
+    own:name="Wolfmother">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Wolfmother"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup44"
+    own:name="Tiwayo">
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup45"
+    own:name="Peaches">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Peaches_(musician)"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup46"
+    own:name="Maestro">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Maestro_(rapper)"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup47"
+    own:name="Foals">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Foals_(band)"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup48"
+    own:name="Edward Sharpe and the Magnetic Zeros">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Edward_Sharpe_and_the_Magnetic_Zeros"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup49"
+    own:name="The Last Shadow Puppets">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Last_Shadow_Puppets"/>
+  </own:MusicGroup>
+
+  <own:MusicGroup rdf:about="#MusicGroup50"
+    own:name="JP Manova">
+  </own:MusicGroup> -->
+
 
 
   <own:MusicEvent rdf:about="#MusicEvent1"

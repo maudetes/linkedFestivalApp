@@ -1,5 +1,6 @@
 var add;
 var results = {};
+var nodeId = 0;
 
 window.onload = function () {
 var sparqlArtists = function() {
@@ -56,7 +57,6 @@ var sparql = function(sparql) {
         type: 'GET',
         url: sparqlEndpoint,
         data: {query: sparql},
-        async: false,
         success: resolve,
         error: reject
       });
@@ -120,7 +120,8 @@ var preparedSparql = function(id) {
 
       var artistNodeId = existingNode(id);
       if (artistNodeId == -1){
-        artistNodeId = alchemy.get.nodes().all()._el.length;
+        artistNodeId = nodeId;
+        nodeId++;
         alchemy.create.nodes([{caption:id, id:artistNodeId, role:'artist'}])
       }
 
@@ -131,7 +132,8 @@ var preparedSparql = function(id) {
           var role = cur.relation.value.split("/")[cur.relation.value.split("/").length -1];
           var pos = existingNode(value);
           if (pos == -1){
-            pos = alchemy.get.nodes().all()._el.length + acc.nodes.length;
+            pos = nodeId;
+            nodeId++;
             var node = {
               caption: value,
               id: pos,
@@ -146,6 +148,11 @@ var preparedSparql = function(id) {
           }
           acc.edges.push(edge);
 
+          var add = cur.remote_value.value;
+          if (add.indexOf("http://")==0)
+            add = "<" + add + ">";
+          else
+            add = "'" + add + "'";
 
           var similar_sp = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
                     "PREFIX own: <http://www.own.org#> " +
@@ -157,7 +164,7 @@ var preparedSparql = function(id) {
                     "  ?remote own:name ?similar_name .  " +
                     "  SERVICE <http://dbpedia.org/sparql> " +
                     "  { " +
-                    "    ?remote <" + cur.relation.value + "> <" + cur.remote_value.value + "> . " +
+                    "    ?remote <" + cur.relation.value + "> " + add + " . " +
                     "  } " +
                     "  FILTER (?similar_name != '" + id + "') " +
                     "}";
@@ -183,8 +190,7 @@ var preparedSparql = function(id) {
 function fetchSimilar(pos, sp, attempts){
 
     if(attempts>=3){
-        console.log("not working");
-        console.log(sp);
+        console.log("not working: " + sp);
         return;
     }
 
@@ -195,7 +201,8 @@ function fetchSimilar(pos, sp, attempts){
             similar.results.bindings.forEach(function(elem){
                 var id = existingNode(elem.similar_name.value);
                 if (id == - 1){
-                    id = alchemy.get.nodes().all()._el.length + similar.results.bindings.indexOf(elem);
+                    id = nodeId;
+                    nodeId++;
                     var node = {
                       "caption": elem.similar_name.value,
                       "id": id,
@@ -210,9 +217,9 @@ function fetchSimilar(pos, sp, attempts){
 
                 alchemy.create.edges([edge]);
 
-                alchemy.startGraph();
-
             });
+            alchemy.startGraph();
+
         }
     }).catch(function(){
       fetchSimilar(pos, sp, attempts+1);
