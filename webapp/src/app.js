@@ -37,6 +37,27 @@ var as = new Vue({
     types:["genre", "activeYearsStartYear", "birthDate", "label", "origin" ],
     preparedSparql: preparedSparql
   },
+  watch: {
+    checked: function(curVal, oldVal) {
+        var added = function(elem){
+          console.log("added: "+elem);
+        }
+        var removed = function(elem){
+          console.log("removed: "+elem);
+        }
+        curVal.forEach(function(elem){
+            if(! oldVal.includes(elem)) {
+              added(elem);
+            }
+        });
+        oldVal.forEach(function(elem){
+          if(! curVal.includes(elem)) {
+            removed(elem);
+          }
+        });
+
+    }
+  }
   beforeCreate: sparqlArtists
 });
 
