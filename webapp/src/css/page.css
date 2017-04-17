@@ -33,6 +33,13 @@ li.selector-item.active {
     fill: #14F787;
 }
 
+
+.edge text {
+    display: block;
+    font-size: 11px;
+    stroke: none !important
+}
+
 .genre circle {
     fill: #6C7EBD !important;
     stroke: #6C7EBD !important
@@ -69,11 +76,11 @@ li.selector-item.active {
     font-size: 10px;
 }
 
-.birthPlace circle {
+.origin circle {
     fill: #c112bf !important;
     stroke: #c112bf !important
 }
-.birthPlace text {
+.origin text {
     display: block;
     font-size: 10px;
 }

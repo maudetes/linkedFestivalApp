@@ -7,15 +7,25 @@ var sparqlArtists = function() {
   var q = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
                       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                                       "PREFIX ns: <http://www.own.org#>\n" +
-                                      "SELECT ?object ?property { ?object rdf:type ns:MusicGroup. ?object ns:name ?property }";
+                                      "SELECT DISTINCT ?property { ?object rdf:type ns:MusicGroup. ?object ns:name ?property }";
   sparql(q).then(function(data){
     as.items =data.results.bindings.map(function(r) {
         return {
             label: r.property.value,
-            value: r.object.value
+            value: r.property.value
         };
-        }
+      }
     );
+    as.items.sort(function(a, b){
+     var nameA=a.label.toLowerCase(), nameB=b.label.toLowerCase();
+     if (nameA < nameB) //sort string ascending
+      return -1;
+     if (nameA > nameB)
+      return 1;
+     return 0; //default return value (no sorting)
+    });
+
+    console.log(res);
   });
 }
 
@@ -33,6 +43,7 @@ var as = new Vue({
 
       var conf = {
         dataSource: {nodes:[], edges:[]},
+//        directedEdges: true,
 //        forceLocked: false,
         graphHeight: function(){ return 800; },
         graphWidth: function(){ return 1000; },
@@ -63,16 +74,6 @@ var sparql = function(sparql) {
   });
 };
 
-var treatmentRes = function(jsonRes) {
-  jsonRes = JSON.parse(jsonRes);
-  console.log(typeof jsonRes);
-
-  jsonRes.results.bindings.forEach(function(elem){
-    var array = elem.remote_value.value.split("/");
-    results[array[array.length-1]] = [];
-  });
-};
-
 var preparedSparql = function(id) {
 
   results = {};
@@ -85,8 +86,8 @@ var preparedSparql = function(id) {
                             "SELECT ?p ?o { ns:Pression ?p ?o }";
 
 
-  var typeOnt = ["genre", "activeYearsStartYear", "birthDate", "birthPlace" ];
-  var typePro = ["label"];
+  var typeOnt = ["genre", "activeYearsStartYear", "birthDate" ];
+  var typePro = ["label", "origin"];
 
   var allAdd = "(";
 
@@ -144,7 +145,8 @@ var preparedSparql = function(id) {
 
           edge = {
             source: artistNodeId,
-            target: pos
+            target: pos,
+            caption: role
           }
           acc.edges.push(edge);
 
@@ -169,8 +171,7 @@ var preparedSparql = function(id) {
                     "  FILTER (?similar_name != '" + id + "') " +
                     "}";
 
-//          if (cur.remote_value.value == "http://dbpedia.org/resource/Indie_pop")
-            fetchSimilar(pos, similar_sp, 0);
+            fetchSimilar(role, pos, similar_sp, 0);
 
           return acc;
       }, {nodes:[], edges:[]});
@@ -187,7 +188,7 @@ var preparedSparql = function(id) {
 
 };
 
-function fetchSimilar(pos, sp, attempts){
+function fetchSimilar(role, pos, sp, attempts){
 
     if(attempts>=3){
         console.log("not working: " + sp);
@@ -204,15 +205,16 @@ function fetchSimilar(pos, sp, attempts){
                     id = nodeId;
                     nodeId++;
                     var node = {
-                      "caption": elem.similar_name.value,
-                      "id": id,
-                      "role": "artist"
+                      caption: elem.similar_name.value,
+                      id: id,
+                      role: "artist"
                     }
                     alchemy.create.nodes([node])
                 }
                 var edge = {
-                  "source": pos,
-                  "target": id
+                  source: pos,
+                  target: id,
+                  caption: role
                 }
 
                 alchemy.create.edges([edge]);
