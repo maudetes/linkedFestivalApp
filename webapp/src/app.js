@@ -24,8 +24,6 @@ var sparqlArtists = function() {
       return 1;
      return 0; //default return value (no sorting)
     });
-
-    console.log(res);
   });
 }
 
@@ -36,6 +34,7 @@ var as = new Vue({
         /*{label: 'Franz Ferdinand', value:'http://www.own.org#FranzFerdinand'}*/
     ],
     checked: [],
+    types:["genre", "activeYearsStartYear", "birthDate", "label", "origin" ],
     preparedSparql: preparedSparql
   },
   beforeCreate: sparqlArtists

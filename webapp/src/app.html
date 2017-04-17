@@ -8,7 +8,7 @@
     <!--<script src="/resources/zepto.js"></script>-->
     <script src="/resources/alchemy/scripts/vendor.js"></script>
     <script src="/resources/alchemy/alchemy.js"></script>
-    
+
     <link rel="stylesheet" href="/resources/alchemy/alchemy-white.css"/>
     <link rel="stylesheet" href="/css/page.css">
     <script src="/app.js"></script>
@@ -17,6 +17,12 @@
 
   <div id="Selector" class="sidebar">
  <form class="pure-form">
+     <fieldset>
+         <legend>Legend</legend>
+         <ul class="legend"><label v-for="type in types">
+             <li v-bind:class="type">{{type}}</li></label>
+         </ul>
+     </fieldset>
     <fieldset>
         <legend>What you're selecting</legend>
         <ul class="">
