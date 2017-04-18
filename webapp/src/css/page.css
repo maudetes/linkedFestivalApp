@@ -1,8 +1,28 @@
+.header {
+    position:fixed;
+    width: 100%;
+    height: 40px;
+    padding: 10px 60px;
+    background: #fff;
+    border-bottom: 1px solid: #bbb;
+    z-index:2;
+}
+
+.detailbar {
+    background: #f2f2f0;
+    width:300px;
+    position:fixed;
+    top:61px;
+    right:0;
+    height:100%;
+    overflow: scroll;
+}
+
 .sidebar {
     background: #f2f2f0;
     width:300px;
     position:fixed;
-    top:0;
+    top:61px;
     left:0;
     height:100%;
     overflow: scroll;

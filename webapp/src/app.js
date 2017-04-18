@@ -19,6 +19,11 @@ var sparqlArtists = function() {
   });
 }
 
+
+var details = new Vue({
+  el: '#Details'
+})
+
 var as = new Vue({
   el: '#Selector',
   data: {
@@ -48,7 +53,7 @@ var as = new Vue({
         });
 
     }
-  }
+  },
   beforeCreate: sparqlArtists
 });
 

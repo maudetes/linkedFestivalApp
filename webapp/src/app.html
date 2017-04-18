@@ -11,10 +11,14 @@
     
     <link rel="stylesheet" href="/resources/alchemy/alchemy-white.css"/>
     <link rel="stylesheet" href="/css/page.css">
-    <script src="/app.js"></script>
+
+    <script src="/entity-detail.js"></script>
+        <script src="/app.js"></script>
   </head>
   <body style="position:relative; width:100%">
-
+    <div class="header">
+        <h1 style="font-family: 'Dosis'; font-size: 20px; font-weight: 500;padding:0; margin:0;">my sparql application</h1>
+    </div>
   <div id="Selector" class="sidebar">
  <form class="pure-form">
     <fieldset>
@@ -29,7 +33,7 @@
      <fieldset>
         <legend>Your selection</legend>
         <ul class="selector"><label v-for="item in items">
-            <li v-bind:class="{'selector-item': true, 'active': checked.includes(item.value)}" @click="preparedSparql(item.label)"><input type="checkbox" v-bind:value="item.value" v-model="checked" />{{item.label}}</li></label>
+            <li v-bind:class="{'selector-item': true, 'active': checked.includes(item.value)}"><input type="checkbox" v-bind:value="item.value" v-model="checked" />{{item.label}}</li></label>
         </ul>
         <span>{{checked}}</span>
 
@@ -43,7 +47,9 @@
 
   <div class="alchemy" id="alchemy"></div>
 
-
+  <div class="detailbar" id="Details">
+    <entity-detail uri="http://uri"></entity-detail>
+  </div>
 
   <link href="//fonts.googleapis.com/css?family=Dosis:500" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono" rel="stylesheet" type="text/css">
