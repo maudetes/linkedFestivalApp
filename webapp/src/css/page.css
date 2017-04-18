@@ -53,6 +53,38 @@ li.selector-item.active {
     fill: #14F787;
 }
 
+li.genre{
+    color:#6C7EBD;
+    text-shadow: 1px 1px 1px grey;
+}
+
+li.activeYearsStartYear{
+    color:#FFAC70;
+    text-shadow: 1px 1px 1px grey;
+}
+
+li.birthDate{
+    color:#E35252;
+    text-shadow: 1px 1px 1px grey;
+}
+
+li.label{
+    color:#FFFD85;
+    text-shadow: 1px 1px 1px grey;
+}
+
+li.origin{
+    color:#c112bf;
+    text-shadow: 1px 1px 1px grey;
+}
+
+
+.edge text {
+    display: block;
+    font-size: 11px;
+    stroke: none !important
+}
+
 .genre circle {
     fill: #6C7EBD !important;
     stroke: #6C7EBD !important
@@ -89,11 +121,11 @@ li.selector-item.active {
     font-size: 10px;
 }
 
-.birthPlace circle {
+.origin circle {
     fill: #c112bf !important;
     stroke: #c112bf !important
 }
-.birthPlace text {
+.origin text {
     display: block;
     font-size: 10px;
 }
