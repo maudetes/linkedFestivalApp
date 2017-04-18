@@ -86,8 +86,10 @@ var preparedSparql = function(MusicGroupList) {
 
   // clearing everything
   var nodeId = 0;
+  conf.dataSource= {nodes:[], edges:[]};
 
   if(!MusicGroupList.length){
+    $('#alchemy>svg').remove();
     alchemy = new Alchemy(conf);
     return;
   }
@@ -205,8 +207,10 @@ var preparedSparql = function(MusicGroupList) {
       }, {nodes:[], edges:[]});
 
       console.log(graph);
+      $('#alchemy>svg').remove();
+      conf.dataSource=graph;
       alchemy = new Alchemy(conf);
-      alchemy.startGraph(graph);
+      //alchemy.startGraph(graph);
   });
 
 };
