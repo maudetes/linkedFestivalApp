@@ -19,7 +19,10 @@
  <form class="pure-form">
      <fieldset>
          <legend>Legend</legend>
-         <ul class="legend"><label v-for="type in types">
+         <ul class="legend"><label v-for="type in typeOnt">
+             <li v-bind:class="type">{{type}}</li></label>
+         </ul>
+         <ul class="legend"><label v-for="type in typePro">
              <li v-bind:class="type">{{type}}</li></label>
          </ul>
      </fieldset>
@@ -35,7 +38,7 @@
      <fieldset>
         <legend>Your selection</legend>
         <ul class="selector"><label v-for="item in items">
-            <li v-bind:class="{'selector-item': true, 'active': checked.includes(item.value)}" @click="preparedSparql(item.label)"><input type="checkbox" v-bind:value="item.value" v-model="checked" />{{item.label}}</li></label>
+            <li v-bind:class="{'selector-item': true, 'active': checked.includes(item.value)}"><input type="checkbox" v-bind:value="item.value" v-model="checked" />{{item.label}}</li></label>
         </ul>
         <span>{{checked}}</span>
 
