@@ -23,11 +23,9 @@
  <form class="pure-form">
      <fieldset>
          <legend>Legend</legend>
-         <ul class="legend"><label v-for="type in typeOnt">
-             <li v-bind:class="type">{{type}}</li></label>
-         </ul>
-         <ul class="legend"><label v-for="type in typePro">
-             <li v-bind:class="type">{{type}}</li></label>
+         <ul class="legend"><label v-for="type in types">
+             <!--<li v-bind:class="type">{{type}}</li></label>-->
+             <li v-bind:class="type.label"><input type="checkbox" v-bind:value="type.value" v-model="checkedType"/>{{type.label}}</li></label>
          </ul>
      </fieldset>
     <fieldset>

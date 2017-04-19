@@ -39,12 +39,17 @@ as = new Vue({
         /*{label: 'Franz Ferdinand', value:'http://www.own.org#FranzFerdinand'}*/
     ],
     checked: [],
-    typeOnt:["genre", "activeYearsStartYear"],
-    typePro:["label", "origin"],
+    types:[{label:'genre', value:'http:\/\/dbpedia\.org\/ontology\/genre'},
+           {label:'activeYearsStartYear', value:'http:\/\/dbpedia\.org\/ontology\/activeYearsStartYear'},
+           {label:'label', value:'http:\/\/dbpedia\.org\/property\/label'},
+           {label:'origin', value:'http:\/\/dbpedia\.org\/property\/origin'}],
+    checkedType: ['http:\/\/dbpedia\.org\/ontology\/genre', 'http:\/\/dbpedia\.org\/ontology\/activeYearsStartYear',
+                  'http:\/\/dbpedia\.org\/property\/label', 'http:\/\/dbpedia\.org\/property\/origin' ],
     preparedSparql: preparedSparql
   },
   watch: {
-    checked: preparedSparql
+    checked: function(curVal){preparedSparql(curVal, as.checkedType)},
+    checkedType: function(curVal){preparedSparql(as.checked, curVal)}
   },
   beforeCreate: sparqlArtists
 });
@@ -60,7 +65,8 @@ as = new Vue({
             role: ["artist", "genre"]
             },
         nodeStyle:{
-        artist:{color: "#14F787", borderColor: "#14F787"}
+        artist:{color: "#14F787", borderColor: "#14F787"},
+        artistSelected:{color: "#14F787", borderColor: "#12a55c", radius:15}
         }
       };
 
@@ -82,13 +88,13 @@ var sparql = function(sparql) {
   });
 };
 
-var preparedSparql = function(MusicGroupList) {
+var preparedSparql = function(MusicGroupList, typeList) {
 
   // clearing everything
   var nodeId = 0;
   conf.dataSource= {nodes:[], edges:[]};
 
-  if(!MusicGroupList.length){
+  if(!MusicGroupList.length || !typeList.length){
     $('#alchemy>svg').remove();
     alchemy = new Alchemy(conf);
     return;
@@ -98,11 +104,8 @@ var preparedSparql = function(MusicGroupList) {
   console.log(MusicGroupList);
 
   var allAdd = "(";
-  as.typeOnt.forEach(function(elem){
-    allAdd += "http:\/\/dbpedia\.org\/ontology\/" + elem + "|";
-  });
-  as.typePro.forEach(function(elem){
-    allAdd += "http:\/\/dbpedia\.org\/property\/" + elem + "|";
+  typeList.forEach(function(elem){
+    allAdd += elem + "|";
   });
   allAdd = allAdd.substring(0,allAdd.length-1);
   allAdd += ")";
@@ -122,6 +125,7 @@ var preparedSparql = function(MusicGroupList) {
           "    <" + MusicGroup + "> ?relation ?remote_value. " +
           "  } " +
           "   FILTER regex(str(?relation), '"+ allAdd +"'). " +
+          "   FILTER regex(str(?remote_value), '(?!.*[*]).+'). " +
           "   BIND ('"+ MusicGroup +"' as ?remote) " +
           "} UNION " +
           "{ " +
@@ -133,6 +137,7 @@ var preparedSparql = function(MusicGroupList) {
           "  } " +
           "   FILTER regex(str(?relation), '"+ allAdd +"'). " +
           "   FILTER (?similar_artist != '" + MusicGroup + "') " +
+          "   FILTER regex(str(?remote_value), '(?!.*[*]).+'). " +
           "} UNION "
   })
 
@@ -159,6 +164,8 @@ var preparedSparql = function(MusicGroupList) {
                 role: 'artist',
                 uri: cur.remote.value
               }
+              if (MusicGroupList.indexOf(cur.remote.value)!==-1)
+                node.role+="Selected"
               acc.nodes.push(node);
             }
           } else { //similarArtist case
@@ -172,6 +179,8 @@ var preparedSparql = function(MusicGroupList) {
                 role: 'artist',
                 uri: cur.similar_artist.value
               }
+              if (MusicGroupList.indexOf(cur.similar_artist.value)!==-1)
+                node.role+="Selected"
               acc.nodes.push(node);
             }
           }

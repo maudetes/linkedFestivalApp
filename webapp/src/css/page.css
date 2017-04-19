@@ -47,7 +47,12 @@ li.selector-item.active {
   position:relative;
   margin-left:300px;
 }
+
 .artist text {
+    display: block;
+    font-size: 15px;
+}
+.artistSelected text {
     display: block;
     font-size: 15px;
     fill: #14F787;
