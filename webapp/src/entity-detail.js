@@ -1,25 +1,36 @@
 
 Vue.component('entity-detail', {
-    template: '<div @click="sparql">{{uri}} <img v-for="image in images" v-bind:src="image"/></div>',
-    props: ['uri'],
+    template: '<div style="padding:10px;"><div v-for="album in albums"><a style="color:black;" v-bind:href="album.artist.resource_url">{{album.artist.name}}</a><br><span style="font-weight: bold">{{album.title}} ({{album.year}})</span>'+
+    '<div><img style="width: 150px; padding:0;margin:0;" v-bind:src="album.image" /></div></div></div>',
     data: function() {
         var data = {
-            images: []
+            albums: [],
+            uri: ""
         }
             
 
         return data;
     },
-
+    watch: {
+        'uri': function(){
+            console.log("querying ..");
+            this.albums=[];
+            this.sparql();
+        }
+    },
     methods: {
         sparql: function() {
                 var that = this;
             var visualize = function(object) {
-
                 var discogsObjects = object.results.bindings.map(function(b) {
                     that.discogs(b.discogsMaster.value).then(function(o){
-                        console.log(o);
-                        that.images = that.images.concat(o.images.map(function(i){return i.uri150}));
+                        var album = {};
+                        album.videos= o.videos;
+                        album.title = o.title;
+                        album.artist = o.artists[0];
+                        album.year = o.year;
+                        album.image = o.images[0].uri150 || null;
+                        that.albums.push(album);
                     });
                 });
 
@@ -33,14 +44,14 @@ var queryString =
 "WHERE {  \n" +
 "     SERVICE <http://dbpedia.org/sparql>  \n" +
 "     {   \n" +
-"       ?b <http://dbpedia.org/ontology/artist> <http://dbpedia.org/resource/Two_Door_Cinema_Club> .  \n" +
+"       ?b <http://dbpedia.org/ontology/artist> <"+this.uri+"> .  \n" +
 "       ?b rdf:type <http://dbpedia.org/ontology/Album> .  \n" +
 "       ?b owl:sameAs ?o .  \n" +
 "       FILTER regex(str(?o), 'wikidata.org') .  \n" +
 "     }  \n" +
 "     SERVICE <https://query.wikidata.org/bigdata/namespace/wdq/sparql>  \n" +
 "     {  \n" +
-"	?o wdp:P1954 ?discogsMaster  \n" +
+"	    ?o wdp:P1954 ?discogsMaster  \n" +
 "     }  \n" +
 "}";
      
@@ -52,7 +63,7 @@ var queryString =
                     type: 'GET',
                     url: "https://api.discogs.com/masters/"+mastersId,
                     data: {
-                        token: "mJWkFSgCdaggtQYomeTwILcXKjHwnlbBPiBkKDQq"
+                        token: "LspHDoZaxBdGZOCktPYuCDpGpSMRiyvhWcnCLDkM"
                     },
                     success: resolve,
                     error: reject

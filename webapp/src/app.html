@@ -17,7 +17,7 @@
   </head>
   <body style="position:relative; width:100%">
     <div class="header">
-        <h1 style="font-family: 'Dosis'; font-size: 20px; font-weight: 500;padding:0; margin:0;">my sparql application</h1>
+        <h1 style="font-family: 'Dosis'; font-size: 20px; font-weight: 500;padding:0; margin:0;">Linked Festival App</h1>
     </div>
   <div id="Selector" class="sidebar">
  <form class="pure-form">
@@ -28,15 +28,7 @@
              <li v-bind:class="type.label"><input type="checkbox" v-bind:value="type.value" v-model="checkedType"/>{{type.label}}</li></label>
          </ul>
      </fieldset>
-    <fieldset>
-        <legend>What you're selecting</legend>
-        <ul class="">
-            <li>from <select><option>types</option></select></li>
-            <li>show <select><option>i</option></select></li>
-            <li>filter <select><option>types</option></select></li>
-            <li>group <select><option>types</option></select></li>
-        </ul>
-    </fieldset>
+ 
      <fieldset>
         <legend>Your selection</legend>
         <ul class="selector"><label v-for="item in items">

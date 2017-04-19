@@ -2,6 +2,9 @@ var add;
 var conf;
 
 var as;
+var details;
+var detailsUri;
+ 
 window.onload = function () {
 var sparqlArtists = function() {
   var q = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
@@ -28,7 +31,7 @@ var sparqlArtists = function() {
 }
 
 
-var details = new Vue({
+details = new Vue({
   el: '#Details'
 })
 
@@ -220,6 +223,12 @@ var preparedSparql = function(MusicGroupList, typeList) {
       conf.dataSource=graph;
       alchemy = new Alchemy(conf);
       //alchemy.startGraph(graph);
+
+      alchemy.get.allNodes().forEach(function(n){ console.log(n.id); $("g>#node-"+n.id).on("click", function(){
+        console.log("clicked "+n._properties.uri);
+        details.$children[0].uri = n._properties.uri;
+      } 
+        );    })
   });
 
 };
