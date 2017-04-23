@@ -9,8 +9,10 @@ window.onload = function () {
 var sparqlArtists = function() {
   var q = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
                       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-                                      "PREFIX ns: <http://www.own.org#>\n" +
-                                      "SELECT ?object ?property { ?object rdf:type ns:MusicGroup. ?object ns:name ?property FILTER regex(str(?object), 'dbpedia')}";
+                                      "PREFIX mo: <http://purl.org/ontology/mo/>\n" +
+                                      "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
+                                      "SELECT ?object ?property { ?object rdf:type mo:MusicGroup. ?object foaf:name ?property FILTER regex(str(?object), 'dbpedia')}";
+  console.log(q);
   sparql(q).then(function(data){
     as.items =data.results.bindings.map(function(r) {
         return {
@@ -113,38 +115,39 @@ var preparedSparql = function(MusicGroupList, typeList) {
   allAdd = allAdd.substring(0,allAdd.length-1);
   allAdd += ")";
 
-  var sp = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-            "PREFIX own: <http://www.own.org#> " +
-            "PREFIX owl: <http://www.w3.org/2002/07/owl#> " +
-            "SELECT ?name ?remote ?relation ?remote_value ?similar_artist ?similar_name  " +
-            "WHERE " +
-            "{ ";
+  var sp = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n" +
+            "PREFIX owl: <http://www.w3.org/2002/07/owl#> \n" +
+            "PREFIX mo: <http://purl.org/ontology/mo/>\n" +
+            "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
+            "SELECT ?name ?remote ?relation ?remote_value ?similar_artist ?similar_name  \n" +
+            "WHERE \n" +
+            "{ \n";
 
   MusicGroupList.forEach(function(MusicGroup){
     sp += "{ " +
-          "  <" + MusicGroup + "> own:name ?name. " +
-          "  SERVICE <http://dbpedia.org/sparql> " +
-          "  { " +
-          "    <" + MusicGroup + "> ?relation ?remote_value. " +
-          "  } " +
-          "   FILTER regex(str(?relation), '"+ allAdd +"'). " +
-          "   FILTER regex(str(?remote_value), '(?!.*[*]).+'). " +
-          "   BIND ('"+ MusicGroup +"' as ?remote) " +
-          "} UNION " +
-          "{ " +
-          "  ?similar_artist own:name ?similar_name. " +
-          "  SERVICE <http://dbpedia.org/sparql> " +
-          "  { " +
-          "    <" + MusicGroup + "> ?relation ?remote_value. " +
-          "    ?similar_artist ?relation ?remote_value. " +
-          "  } " +
-          "   FILTER regex(str(?relation), '"+ allAdd +"'). " +
-          "   FILTER (?similar_artist != '" + MusicGroup + "') " +
-          "   FILTER regex(str(?remote_value), '(?!.*[*]).+'). " +
-          "} UNION "
+          "  <" + MusicGroup + "> foaf:name ?name. \n" +
+          "  SERVICE <http://dbpedia.org/sparql> \n" +
+          "  { \n" +
+          "    <" + MusicGroup + "> ?relation ?remote_value. \n" +
+          "  } \n" +
+          "   FILTER regex(str(?relation), '"+ allAdd +"'). \n" +
+          "   FILTER regex(str(?remote_value), '(?!.*[*]).+'). \n" +
+          "   BIND ('"+ MusicGroup +"' as ?remote) \n" +
+          "} UNION \n" +
+          "{ \n" +
+          "  ?similar_artist foaf:name ?similar_name. \n" +
+          "  SERVICE <http://dbpedia.org/sparql> \n" +
+          "  { \n" +
+          "    <" + MusicGroup + "> ?relation ?remote_value. \n" +
+          "    ?similar_artist ?relation ?remote_value. \n" +
+          "  } \n" +
+          "   FILTER regex(str(?relation), '"+ allAdd +"'). \n" +
+          "   FILTER (?similar_artist != '" + MusicGroup + "') \n" +
+          "   FILTER regex(str(?remote_value), '(?!.*[*]).+'). \n" +
+          "} UNION \n";
   })
 
-  sp = sp.substring(0, sp.length-6)
+  sp = sp.substring(0, sp.length-7)
   sp += "} ";
 
   console.log(sp);

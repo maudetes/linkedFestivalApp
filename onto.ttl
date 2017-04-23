@@ -18,14 +18,14 @@
                                 rdf:type owl:FunctionalProperty ,
                                          owl:InverseFunctionalProperty ;
                                 rdfs:domain <http://www.own.org#Stage> ;
-                                rdfs:range <http://www.own.org#MusicEvent> .
+                                rdfs:range <http://www.own.org#performance> .
 
 
 ###  http://www.own.org#onStage
 <http://www.own.org#onStage> rdf:type owl:ObjectProperty ,
                                       owl:FunctionalProperty ,
                                       owl:InverseFunctionalProperty ;
-                             rdfs:domain <http://www.own.org#MusicEvent> ;
+                             rdfs:domain <http://purl.org/ontology/mo/performance> ;
                              rdfs:range <http://www.own.org#Stage> .
 
 
@@ -38,15 +38,25 @@
                                  owl:equivalentClass [ owl:intersectionOf ( <http://www.own.org#Stage>
                                                                             [ rdf:type owl:Restriction ;
                                                                               owl:onProperty <http://www.own.org#hostsEvent> ;
-                                                                              owl:someValuesFrom <http://www.own.org#MusicEvent>
+                                                                              owl:someValuesFrom <http://purl.org/ontology/mo/performance>
                                                                             ]
                                                                           ) ;
                                                        rdf:type owl:Class
                                                      ] .
 
 
-###  http://www.own.org#MusicEvent
-<http://www.own.org#MusicEvent> rdf:type owl:Class .
+###  http://www.own.org#DiscoveryStage
+<http://www.own.org#DiscoveryStage> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.own.org#Stage> .
+
+
+###  http://www.own.org#Headliner
+<http://www.own.org#Headliner> rdf:type owl:Class .
+
+
+###  http://www.own.org#MainStage
+<http://www.own.org#MainStage> rdf:type owl:Class ;
+                               rdfs:subClassOf <http://www.own.org#Stage> .
 
 
 ###  http://www.own.org#Stage

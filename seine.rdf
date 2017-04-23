@@ -7,302 +7,305 @@
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:owl="http://www.w3.org/2002/07/owl#"
   xml:base="http://www.own.org"
+  xmlns:mo="http://purl.org/ontology/mo/"
+  xmlns:event="http://purl.org/NET/c4dm/event.owl#"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
 >
 
 <!-- <rdf:RDF xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xml:base="http://www.daml.org/2001/01/gedcom/gedcom"> -->
 
-  <own:Stage rdf:about="#Grande"
+  <own:MainStage rdf:about="#Grande"
     own:name="Grande"/>
   <own:Stage rdf:about="#Cascade"
     own:name="La Cascade"/>
   <own:Stage rdf:about="#Industrie"
     own:name="de l'industrie"/>
-  <own:Stage rdf:about="#Pression"
+  <own:DiscoveryStage rdf:about="#Pression"
     own:name="Pression Live"/>
-  <own:Stage rdf:about="#IdF"
+  <own:DiscoveryStage rdf:about="#IdF"
     own:name="Île de France"/>
 
-  <own:MusicGroup rdf:about="#MusicGroup1"
-    own:name="Jack Garratt">
+  <mo:MusicGroup rdf:about="#MusicGroup1"
+    foaf:name="Jack Garratt">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Jack_Garratt"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup2"
-    own:name="Tim Dup">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup2"
+    foaf:name="Tim Dup">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup3"
-    own:name="Two Door Cinema Club">
+  <mo:MusicGroup rdf:about="#MusicGroup3"
+    foaf:name="Two Door Cinema Club">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Two_Door_Cinema_Club"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup4"
-    own:name="Kaviar Special">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup4"
+    foaf:name="Kaviar Special">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup5"
-    own:name="Gregory Porter">
+  <mo:MusicGroup rdf:about="#MusicGroup5"
+    foaf:name="Gregory Porter">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Gregory_Porter"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup6"
-    own:name="Soulwax">
+  <mo:MusicGroup rdf:about="#MusicGroup6"
+    foaf:name="Soulwax">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Soulwax"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup7"
-    own:name="The Shins">
+  <!--<mo:MusicGroup rdf:about="#MusicGroup7"
+    foaf:name="The Shins">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Shins"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup8"
-    own:name="Pogo Car Crash Control">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup8"
+    foaf:name="Pogo Car Crash Control">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup9"
-    own:name="Adrien Soleiman">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup9"
+    foaf:name="Adrien Soleiman">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup10"
-    own:name="Sum 41">
+  <mo:MusicGroup rdf:about="#MusicGroup10"
+    foaf:name="Sum 41">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Sum_41"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup11"
-    own:name="Iggy Pop">
+  <mo:MusicGroup rdf:about="#MusicGroup11"
+    foaf:name="Iggy Pop">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Iggy_Pop"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup12"
-    own:name="Bibi Bourelly">
+  <mo:MusicGroup rdf:about="#MusicGroup12"
+    foaf:name="Bibi Bourelly">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Bibi_Bourelly"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup13"
-    own:name="Caravan Palace">
+  <mo:MusicGroup rdf:about="#MusicGroup13"
+    foaf:name="Caravan Palace">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Caravan_Palace"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup14"
-    own:name="Miike Snow">
+  <mo:MusicGroup rdf:about="#MusicGroup14"
+    foaf:name="Miike Snow">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Miike_Snow"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup15"
-    own:name="Killason">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup15"
+    foaf:name="Killason">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup16"
-    own:name="Einleit">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup16"
+    foaf:name="Einleit">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup17"
-    own:name="Papooz">
+  <mo:MusicGroup rdf:about="#MusicGroup17"
+    foaf:name="Papooz">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Papooz"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup18"
-    own:name="Anderson Paak">
+  <mo:MusicGroup rdf:about="#MusicGroup18"
+    foaf:name="Anderson Paak">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Anderson_Paak"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup19"
-    own:name="Editors">
+  <mo:MusicGroup rdf:about="#MusicGroup19"
+    foaf:name="Editors">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Editors_(band)"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup20"
-    own:name="Ghinzu">
+  <mo:MusicGroup rdf:about="#MusicGroup20"
+    foaf:name="Ghinzu">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Ghinzu"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup21"
-    own:name="Theo Lawrence and the Hearts">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup21"
+    foaf:name="Theo Lawrence and the Hearts">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup22"
-    own:name="Imarhan">
+  <mo:MusicGroup rdf:about="#MusicGroup22"
+    foaf:name="Imarhan">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Imarhan"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup23"
-    own:name="Birdy Nam Nam">
+  <mo:MusicGroup rdf:about="#MusicGroup23"
+    foaf:name="Birdy Nam Nam">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Birdy_Nam_Nam"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup24"
-    own:name="The Strumbellas">
+  <mo:MusicGroup rdf:about="#MusicGroup24"
+    foaf:name="The Strumbellas">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Strumbellas"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup25"
-    own:name="Bastille">
+  <mo:MusicGroup rdf:about="#MusicGroup25"
+    foaf:name="Bastille">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Bastille_(band)"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup26"
-    own:name="Nusky and Vaati">
+  <mo:MusicGroup rdf:about="#MusicGroup26"
+    foaf:name="Nusky and Vaati">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Nusky_and_Vaati"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup27"
-    own:name="Clutch">
+  <mo:MusicGroup rdf:about="#MusicGroup27"
+    foaf:name="Clutch">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Clutch_(band)"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup28"
-    own:name="Logic">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup28"
+    foaf:name="Logic">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup29"
-    own:name="Joycut">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup29"
+    foaf:name="Joycut">
+  </mo:MusicGroup>
   
-  <own:MusicGroup rdf:about="#MusicGroup30"
-    own:name="Sigur Rós">
+  <mo:MusicGroup rdf:about="#MusicGroup30"
+    foaf:name="Sigur Rós">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Sigur_Rós"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup31"
-    own:name="La Femme">
+  <mo:MusicGroup rdf:about="#MusicGroup31"
+    foaf:name="La Femme">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/La_Femme_(band)"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup32"
-    own:name="Little Simz">
+  <mo:MusicGroup rdf:about="#MusicGroup32"
+    foaf:name="Little Simz">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Little_Simz"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup33"
-    own:name="Royal Republic">
+  <mo:MusicGroup rdf:about="#MusicGroup33"
+    foaf:name="Royal Republic">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Royal_Republic"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup34"
-    own:name="The Psychotic Monks">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup34"
+    foaf:name="The Psychotic Monks">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup35"
-    own:name="Chvrches">
+  <mo:MusicGroup rdf:about="#MusicGroup35"
+    foaf:name="Chvrches">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Chvrches"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup36"
-    own:name="Bombino">
+  <mo:MusicGroup rdf:about="#MusicGroup36"
+    foaf:name="Bombino">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Bombino_(musician)"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup37"
-    own:name="The Temper Trap">
+  <mo:MusicGroup rdf:about="#MusicGroup37"
+    foaf:name="The Temper Trap">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Temper_Trap"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup38"
-    own:name="The Underachievers">
+  <mo:MusicGroup rdf:about="#MusicGroup38"
+    foaf:name="The Underachievers">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Underachievers"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup39"
-    own:name="Breakbot">
+  <mo:MusicGroup rdf:about="#MusicGroup39"
+    foaf:name="Breakbot">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Breakbot"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup40"
-    own:name="Grand Blanc">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup40"
+    foaf:name="Grand Blanc">
+  </mo:MusicGroup> -->
 
-  <!-- <own:MusicGroup rdf:about="#MusicGroup41"
-    own:name="Damian Jr. Gong Marley">
+  <!-- <mo:MusicGroup rdf:about="#MusicGroup41"
+    foaf:name="Damian Jr. Gong Marley">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Damian_Marley"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup42"
-    own:name="Flavien Berger">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup42"
+    foaf:name="Flavien Berger">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup43"
-    own:name="Wolfmother">
+  <mo:MusicGroup rdf:about="#MusicGroup43"
+    foaf:name="Wolfmother">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Wolfmother"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup44"
-    own:name="Tiwayo">
-  </own:MusicGroup>
+  <mo:MusicGroup rdf:about="#MusicGroup44"
+    foaf:name="Tiwayo">
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup45"
-    own:name="Peaches">
+  <mo:MusicGroup rdf:about="#MusicGroup45"
+    foaf:name="Peaches">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Peaches_(musician)"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup46"
-    own:name="Maestro">
+  <mo:MusicGroup rdf:about="#MusicGroup46"
+    foaf:name="Maestro">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Maestro_(rapper)"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup47"
-    own:name="Foals">
+  <mo:MusicGroup rdf:about="#MusicGroup47"
+    foaf:name="Foals">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Foals_(band)"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup48"
-    own:name="Edward Sharpe and the Magnetic Zeros">
+  <mo:MusicGroup rdf:about="#MusicGroup48"
+    foaf:name="Edward Sharpe and the Magnetic Zeros">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Edward_Sharpe_and_the_Magnetic_Zeros"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup49"
-    own:name="The Last Shadow Puppets">
+  <mo:MusicGroup rdf:about="#MusicGroup49"
+    foaf:name="The Last Shadow Puppets">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Last_Shadow_Puppets"/>
-  </own:MusicGroup>
+  </mo:MusicGroup>
 
-  <own:MusicGroup rdf:about="#MusicGroup50"
-    own:name="JP Manova">
-  </own:MusicGroup> -->
+  <mo:MusicGroup rdf:about="#MusicGroup50"
+    foaf:name="JP Manova">
+  </mo:MusicGroup> -->
 
 
 
-  <own:MusicEvent rdf:about="#MusicEvent1"
+  <mo:Performance rdf:about="#Performance1"
     own:startDate ="2016-08-26T19:45:00Z"
     own:endDate = "2016-08-26T20:35:00Z">
     <own:onStage rdf:resource="#Pression"/>
     <own:performer rdf:resource="#MusicGroup1"/>
-  </own:MusicEvent>
+  </mo:Performance>
 
-  <own:MusicEvent rdf:about="#MusicEvent2">
+  <mo:Performance rdf:about="#Performance2">
     <own:performer rdf:resource="#MusicGroup2"/>
     <own:startDate>2016-08-27T18:00:00Z</own:startDate>
     <own:endDate>2016-08-27T18:30:00Z</own:endDate>
     <own:onStage rdf:resource="#IdF"/>
-  </own:MusicEvent>
+  </mo:Performance>
 
-  <own:MusicEvent rdf:about="#MusicEvent3">
+  <mo:Performance rdf:about="#Performance3">
     <own:performer rdf:resource="#MusicGroup3"/>
     <own:startDate>2016-08-26T20:45:00Z</own:startDate>
     <own:endDate>2016-08-26T21:45:00Z</own:endDate>
     <own:onStage rdf:resource="#Grande"/>
-  </own:MusicEvent>
+  </mo:Performance>
     
-    <own:MusicEvent rdf:about="#MusicEvent4">
+    <mo:Performance rdf:about="#Performance4">
       <own:performer rdf:resource="#MusicGroup4"/>
       <own:startDate>2016-08-27T15:30:00Z</own:startDate>
       <own:endDate>2016-08-27T16:10:00Z</own:endDate>
       <own:onStage rdf:resource="#Industrie"/>
-    </own:MusicEvent>
+    </mo:Performance>
 
-    <own:MusicEvent rdf:about="#MusicEvent5">
+    <mo:Performance rdf:about="#Performance5">
       <own:performer rdf:resource="#MusicGroup5"/>
       <own:startDate>2016-08-28T16:55:00Z</own:startDate>
       <own:endDate>2016-08-28T17:45:00Z</own:endDate>
       <own:onStage rdf:resource="#Cascade"/>
-    </own:MusicEvent>
+    </mo:Performance>
 
-    <own:MusicEvent rdf:about="#MusicEvent6">
+    <mo:Performance rdf:about="#Performance6">
       <own:performer rdf:resource="#MusicGroup6"/>
       <own:startDate>2016-08-28T22:05:00Z</own:startDate>
       <own:endDate>2016-08-28T23:05:00Z</own:endDate>
       <own:onStage rdf:resource="#Industrie"/>
-    </own:MusicEvent>
+    </mo:Performance>
 
   <own:Festival rdf:about="#Festival1"
     own:startDate="2016-08-26"
@@ -315,12 +318,14 @@
     <own:hasStage rdf:resource="#Pression"/>
     <own:hasStage rdf:resource="#IdF"/>
 
-    <own:hasMusicEvent rdf:resource="#1"/>
-    <own:hasMusicEvent rdf:resource="#2"/>
-    <own:hasMusicEvent rdf:resource="#3"/>
-    <own:hasMusicEvent rdf:resource="#4"/>
-    <own:hasMusicEvent rdf:resource="#5"/>
-    <own:hasMusicEvent rdf:resource="#6"/>
+    <mo:headliner rdf:resource="#MusicGroup1"/>
+
+    <event:hasSubEvent rdf:resource="#1"/>
+    <event:hasSubEvent rdf:resource="#2"/>
+    <event:hasSubEvent rdf:resource="#3"/>
+    <event:hasSubEvent rdf:resource="#4"/>
+    <event:hasSubEvent rdf:resource="#5"/>
+    <event:hasSubEvent rdf:resource="#6"/>
   </own:Festival>
 </rdf:RDF>
 
