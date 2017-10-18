@@ -63,7 +63,7 @@ var queryString =
                     type: 'GET',
                     url: "https://api.discogs.com/masters/"+mastersId,
                     data: {
-                        token: "LspHDoZaxBdGZOCktPYuCDpGpSMRiyvhWcnCLDkM"
+                        token: "HxAqGJKHxYowersBmpatDXkaBoxtnMnfAdHSeynp"
                     },
                     success: resolve,
                     error: reject

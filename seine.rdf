@@ -55,7 +55,7 @@
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Soulwax"/>
   </mo:MusicGroup>
 
-  <!--<mo:MusicGroup rdf:about="#MusicGroup7"
+  <mo:MusicGroup rdf:about="#MusicGroup7"
     foaf:name="The Shins">
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/The_Shins"/>
   </mo:MusicGroup>
@@ -214,7 +214,7 @@
 
   <mo:MusicGroup rdf:about="#MusicGroup40"
     foaf:name="Grand Blanc">
-  </mo:MusicGroup> -->
+  </mo:MusicGroup>
 
   <!-- <mo:MusicGroup rdf:about="#MusicGroup41"
     foaf:name="Damian Jr. Gong Marley">
